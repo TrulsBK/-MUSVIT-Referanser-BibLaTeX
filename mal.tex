@@ -1,0 +1,86 @@
+% !TeX program = xelatex
+% !TeX bibfile = Semesteroppgave.bib
+% !BIB program = biber
+% !TeX spellcheck = nb_NB-NorwegianBokmal
+
+\documentclass{article}
+
+%% Utforming %%
+\usepackage[a4paper]{geometry} 
+
+\setlength{\parindent}{0em} %Fjerner paragrafdistanse og legger til innrykk.
+\setlength{\parskip}{0.8em}
+
+\usepackage{fancyhdr} %For topptekst og bunntekst.
+\setlength{\headheight}{30pt}
+
+\usepackage{setspace} %Importeres for linjeavstand
+\doublespacing
+%\onehalfspacing
+
+\usepackage{fontspec} %For font
+\setmainfont{Times New Roman}
+
+\usepackage[hidelinks]{hyperref} %For klikkbare lenker
+\usepackage[norsk,noabbrev]{cleveref} %For referering av figuer o.l.
+
+\usepackage{graphicx} %For bilder.
+\usepackage{subcaption} %For bildetekst
+
+
+%% IMPLEMENTERING AV NORSKE SKRIVEREGLER %%
+\usepackage[norsk]{babel} %Oversetter bibliografi o.l. til norsk. Gjør " aktiv .
+\usepackage{csquotes} %For norske hermetegn. Bruk enten "< og "> for hermetegn, eller \enquote 
+
+\DeclareQuoteStyle[enkel]{norwegian} %For enkle hermetegn i sitat-i-sitat.
+{\guillemotleft}
+{\guillemotright}
+%[0.025em]
+{\textquoteleft}
+{\textquoteright}
+\ExecuteQuoteOptions{norwegian=enkel}
+
+%% BIBLIOGRAFI %%
+\usepackage[backend=biber, style=apa,autocite=inline]{biblatex} %Importerer apa7. Tillater bruk at \textcite og \parencite
+\usepackage[hidelinks]{hyperref} %GJør innholdfortegnelse og kilder klikkbare
+
+\DefineBibliographyStrings{norsk}{
+	andothers        = {et\addabbrvspace al\adddot},
+	andmore          = {et\addabbrvspace al\adddot},
+	origyear         = {Opprinnelig utgitt},
+} %Endrer på oversettelser fra Babel i henhold til oversettelse som brukes av kildekompasset.
+
+%\addbibresource{.MUSV1032 - Referanser.bib}
+
+%% MUSIKKTEGN %%
+\usepackage{lilyglyphs} %For taktnøkkel osv.
+\usepackage{musicography} %For kryss og b-er.
+
+%% DIV %%
+\newcommand{\quickwordcount}[1]{%
+	\immediate\write18{texcount -1 -sum -merge -q #1.tex > #1-words.sum }%
+	\input{#1-words.sum}ord%
+} %For ordtelling
+
+\begin{document}
+	\thispagestyle{fancy}
+	\fancyhead[L]{\small \textbf{Kandidatnummer}: xxxxx}
+	\fancyhead[R]{\small \textbf{Antall ord:} \quickwordcount{mal}}
+	\fancyhead[C]{\small MUSVXXXX, Høst/Vår 20XX}
+
+
+{\centering
+\section*{Tittel}
+}
+Dette er en mal for å skrive dokumenter i musikkvitenskap. Den har en automatisk innebygd ordteller og støtte for musikknotasjon. For eksempel kan jeg skrive at et stykke går i E\fl{} og i \lilyTimeSignature{4}{4}.
+
+
+
+\section{Kapittel}
+
+Slik ser en overskrift ut.
+
+%\printbibliography
+
+\end{document}
+
